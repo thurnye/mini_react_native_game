@@ -23,10 +23,9 @@ export default StartGameScreen;
 const styles = StyleSheet.create({
     container: {
         padding: 16,
-        marginTop: 100,
         marginHorizontal: 24,
         borderRadius: 8,
-        backgroundColor: '#72063c',
+        backgroundColor: '#3b021f',
         elevation: 4,
         shadowColor: 'black',
         shadowOffset: {width: 0, height: 2},
