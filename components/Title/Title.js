@@ -1,7 +1,4 @@
-import {useState} from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import colors from '../../constants/colors';
-
+import { StyleSheet, Text} from 'react-native';
 
 
 const Title = ({children}) => {
@@ -15,12 +12,12 @@ export default Title;
 
 const styles = StyleSheet.create({
     title: {
+        fontFamily: 'open-sans-bold',
         fontSize: 24,
-        fontWeight: 'bold',
-        color: colors.accent500,
+        color: 'white',
         textAlign: 'center',
         borderWidth: 2,
-        borderColor: colors.accent500,
+        borderColor: 'white',
         padding: 12
     }
   });

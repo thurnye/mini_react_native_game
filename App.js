@@ -1,17 +1,45 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, ImageBackground } from 'react-native';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
+import GameOverScreen from './screens/GameOverScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 import colors from './constants/colors';
-
+import * as SplashScreen from 'expo-splash-screen';
+import  {useFonts} from 'expo-font'
 
 
 
 export default function App() {
 
-  const [userNumber, setUserNumber] = useState('12')
+  const [userNumber, setUserNumber] = useState('')
+  const [gameOver, setGameOver] = useState(false)
+  const [rounds, setRounds] = useState(0)
+ const [fontsLoaded] = useFonts({
+    'open-sans' :  require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold' :  require('./assets/fonts/OpenSans-Bold.ttf'),
+  })
+
+  useEffect(() => {
+    // Prevent the splash screen from automatically hiding
+    SplashScreen.preventAutoHideAsync();
+
+    // Hide the splash screen once the fonts are loaded
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    // Return null to prevent rendering until the fonts are loaded
+    return null;
+  }
+
+  const restartGame = () => {
+    setUserNumber('');
+    setGameOver(false);
+  }
 
 
   return (
@@ -23,10 +51,11 @@ export default function App() {
       imageStyle={styles.backgroundImage}
       >
         <SafeAreaView style={styles.rootScreen}>
-          {userNumber ? 
-            <GameScreen/> 
+          {userNumber  && !gameOver ? 
+            <GameScreen userNumber={userNumber} setGameOver={setGameOver} setRounds={setRounds} rounds={rounds}/> 
             : 
-            <StartGameScreen userNumber={userNumber} setUserNumber={setUserNumber}/>
+            userNumber  && gameOver ? <GameOverScreen rounds={rounds} restartGame={restartGame} userNumber={userNumber}/> :
+            <StartGameScreen userNumber={userNumber} setUserNumber={setUserNumber} />
           }
 
         </SafeAreaView>
