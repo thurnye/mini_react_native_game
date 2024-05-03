@@ -17,7 +17,7 @@
 
 
 ## Screens
- <img src="./assets/images/startScreen.png?raw=true" width= "400px" height="250px"> &nbsp; &nbsp; <img src="./assets/images/gameScreen.png?raw=true" width= "400px" height="250px"> &nbsp; &nbsp; <img src="./assets/images/gameOverScreen.png?raw=true" width= "400px" height="250px"> 
+ <img src="./assets/images/startScreen.png?raw=true" width= "200px" height="100%"> &nbsp; &nbsp; <img src="./assets/images/gameScreen.png?raw=true" width= "200px" height="100%"> &nbsp; &nbsp; <img src="./assets/images/gameOverScreen.png?raw=true" width= "200px" height="100%"> 
 
 ---
 ### To Run Local
