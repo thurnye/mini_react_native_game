@@ -11,6 +11,8 @@
 | :-------------: |
 | Javascript     | 
 | React Native    | 
+| IOS    | 
+| Android    | 
 
 
 ---
