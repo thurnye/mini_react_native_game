@@ -22,17 +22,13 @@ export default function App() {
   })
 
   useEffect(() => {
-    // Prevent the splash screen from automatically hiding
     SplashScreen.preventAutoHideAsync();
-
-    // Hide the splash screen once the fonts are loaded
     if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    // Return null to prevent rendering until the fonts are loaded
     return null;
   }
 
@@ -43,32 +39,33 @@ export default function App() {
 
 
   return (
-    <LinearGradient style={styles.rootScreen}  colors={[colors.primary700, colors.accent500]}>
-      <ImageBackground 
-      source={require('./assets/images/background.jpeg')} 
-      resizeMode='cover'
-      style={styles.rootScreen}
-      imageStyle={styles.backgroundImage}
-      >
-        <SafeAreaView style={styles.rootScreen}>
-          {userNumber  && !gameOver ? 
-            <GameScreen userNumber={userNumber} setGameOver={setGameOver} setRounds={setRounds} rounds={rounds}/> 
-            : 
-            userNumber  && gameOver ? <GameOverScreen rounds={rounds} restartGame={restartGame} userNumber={userNumber}/> :
-            <StartGameScreen userNumber={userNumber} setUserNumber={setUserNumber} />
-          }
+    <>
+    <StatusBar style='light'/>
+      <LinearGradient style={styles.rootScreen}  colors={[colors.primary700, colors.accent500]}>
+        <ImageBackground 
+        source={require('./assets/images/background.jpeg')} 
+        resizeMode='cover'
+        style={styles.rootScreen}
+        imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={styles.rootScreen}>
+            {userNumber  && !gameOver ? 
+              <GameScreen userNumber={userNumber} setGameOver={setGameOver} setRounds={setRounds} rounds={rounds}/> 
+              : 
+              userNumber  && gameOver ? <GameOverScreen rounds={rounds} restartGame={restartGame} userNumber={userNumber}/> :
+              <StartGameScreen userNumber={userNumber} setUserNumber={setUserNumber} />
+            }
 
-        </SafeAreaView>
-        </ImageBackground>
-    </LinearGradient>
+          </SafeAreaView>
+          </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   rootScreen: {
     flex: 1,
-    // justifyContent:'center',
-    // alignItems: 'center',
   },
   backgroundImage: {
     opacity: 0.15
